@@ -30,8 +30,9 @@ jobs:
         with:
           root_file: main.tex
 
-      - name: Upload Resume Artifact
+      - name: Upload Artifact
         uses: actions/upload-artifact@v2.2.4
         with:
-          name: lannutti-family-cookbook
+          name: cookbook
           path: main.pdf
+      
