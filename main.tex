@@ -1,8 +1,8 @@
-\documentclass[a4paper]{article}
+\documentclass[a4paper, titlepage]{book}
 \usepackage[utf8]{inputenc}
 \usepackage{siunitx}
 \usepackage[margin=2cm]{geometry}
-\usepackage{cuisine}
+\usepackage[nonumber, contents]{cuisine}
 \usepackage{microtype}
 \usepackage[subpreambles=true]{standalone}
 \usepackage{import}
@@ -14,6 +14,10 @@
 
 \begin{document}
 \maketitle
+\pagenumbering{gobble}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
 
 \import{recipes/}{DinnerRolls}
 \import{recipes/}{SourdoughBiscuits}
