@@ -28,10 +28,10 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: LannuttiFamilyCookbook.tex
+          root_file: main.tex
 
       - name: Upload Resume Artifact
         uses: actions/upload-artifact@v2.2.4
         with:
-          name: PDF
-          path: LannuttiFamilyCookbook.pdf
+          name: lannutti-family-cookbook
+          path: main.pdf
