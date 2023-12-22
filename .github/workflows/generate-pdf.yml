@@ -21,16 +21,10 @@ jobs:
           args: "-output-directory=out -pdf -file-line-error -halt-on-error -interaction=nonstopmode"
 
       - name: Upload Pages Artifact
-        uses: actions/upload-github-pages-artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: "out/"
       
-      - name: Publish to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
-  
   deploy:
     needs: build
 
