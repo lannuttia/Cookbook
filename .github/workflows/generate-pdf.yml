@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  PDF:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,17 +17,35 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: main.tex
-          path: out/cookbook.pdf
+          root_file: cookbook.tex
+          args: "-output-directory=out -pdf -file-line-error -halt-on-error -interaction=nonstopmode"
 
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2.2.4
+      - name: Upload Pages Artifact
+        uses: actions/upload-github-pages-artifact
         with:
-          name: cookbook
-          path: out/cookbook.pdf
+          path: "out/"
       
       - name: Publish to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
+  
+  deploy:
+    needs: build
+
+    permissions:
+      pages: write
+      id-token: write
+      actions: read
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+      
